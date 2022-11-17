@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Car details</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)
+          ),
+          url(../static/garage.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+      }
+      .container {
+        margin: 4% auto;
+        padding: 2%;
+        width: 60%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container bg-light" >
+      <form method="post" action="/y_predict">
+        <h2 class="text-center">Enter the vehicle details {{name}}</h2>
+        <br />
+        <div class="row mb-3">
+          <label for="regyear" class="col-sm-4 col-form-label"
+            >Registration Year</label
+          >
+          <div class="col-sm-8">
+            <input
+              type="number"
+              class="form-control"
+              id="regyear"
+              name="regyear"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="month" class="col-sm-4 col-form-label"
+            >Registration month</label
+          >
+          <div class="col-sm-8">
+            <select class="form-select" id="month" name="month">
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="powerps" class="col-sm-4 col-form-label"
+            >Power of car in PS</label
+          >
+          <div class="col-sm-8">
+            <input
+              type="number"
+              class="form-control"
+              id="powerps"
+              name="powerps"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="kms" class="col-sm-4 col-form-label"
+            >Distance travelled in km</label
+          >
+          <div class="col-sm-8">
+            <input
+              type="number"
+              class="form-control"
+              id="kms"
+              name="kms"
+              required
+            />
+          </div>
+        </div>
+        <fieldset class="row mb-3">
+          <legend class="col-form-label col-sm-4 pt-0">Gear Box Type</legend>
+          <div class="col-sm-8">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gearbox"
+                id="gearbox1"
+                value="manual"
+                checked
+              />
+              <label class="form-check-label" for="gearbox1"> Manual </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gearbox"
+                id="gearbox2"
+                value="automatic"
+              />
+              <label class="form-check-label" for="gearbox2"> Automatic </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gearbox"
+                id="gearbox3"
+                value="not-declared"
+              />
+              <label class="form-check-label" for="gearbox3">
+                Not declared
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="row mb-3">
+          <legend class="col-form-label col-sm-4 pt-0">
+            Car is damaged/repaired
+          </legend>
+          <div class="col-sm-8">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="dam"
+                id="dam1"
+                value="Yes"
+                checked
+              />
+              <label class="form-check-label" for="dam1"> Yes </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="dam"
+                id="dam2"
+                value="No"
+              />
+              <label class="form-check-label" for="dam2"> No </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="dam"
+                id="dam3"
+                value="not-declared"
+              />
+              <label class="form-check-label" for="dam3"> Not declared </label>
+            </div>
+          </div>
+        </fieldset>
+        <div class="row mb-3">
+          <label for="modeltype" class="col-sm-4 col-form-label"
+            >Model type</label
+          >
+          <div class="col-sm-8">
+            <select class="form-select" id="modeltype" name="modeltype">
+              {%for i in modelData%}
+              <option value="{{i}}">{{i}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="brand" class="col-sm-4 col-form-label">Brand type</label>
+          <div class="col-sm-8">
+            <select class="form-select" id="brand" name="brand">
+              {%for i in brandData%}
+              <option value="{{i}}">{{i}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="fuel" class="col-sm-4 col-form-label">Fuel type</label>
+          <div class="col-sm-8">
+            <select class="form-select" id="fuel" name="fuel">
+              {%for i in fuelData%}
+              <option value="{{i}}">{{i}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="vehicletype" class="col-sm-4 col-form-label"
+            >Vehicle type</label
+          >
+          <div class="col-sm-8">
+            <select class="form-select" id="vehicletype" name="vehicletype">
+              {%for i in vehicleData%}
+              <option value="{{i}}">{{i}}</option>
+              {%endfor%}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="offset-sm-4 col-sm-8">
+            <button type="submit" class="btn btn-primary">
+              Predict the price
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
