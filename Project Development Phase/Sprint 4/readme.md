@@ -7,11 +7,11 @@ ___
 ## Hosted link: [https://crvp-anxious-fox-py.mybluemix.net/](https://crvp-anxious-fox-py.mybluemix.net/)
 ___
 1. Prediction form completed
-![predict form](./results/predict.png)
+![predict form](./Project%20code/results/predict.png)
 ___
 2. Result prediction completed
-![result](./results/result.png)
+![result](./Project%20code/results/result.png)
 ___
 3. Website hosted in IBM Cloud Foundry
-![host](./results/website.jpeg)
-![cmd](./results/cmd.jpeg)
+![host](./Project%20code/results/website.jpeg)
+![cmd](./Project%20code/results/cmd.jpeg)
