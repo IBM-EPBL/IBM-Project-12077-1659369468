@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Prediction history</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)
+          ),
+          url(../static/garage.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+      }
+      hr {
+        width: 90%;
+        margin: auto;
+        border-width: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container bg-light my-5">
+      <div class="row p-4">
+        <h1 class="offset-sm-5 col-sm-4">Welcome, {{name}}</h1>
+        <div class="col-sm-3 p-1 text-center">
+          <a href="/logout" class="btn btn-primary btn-lg">Logout</a>
+        </div>
+      </div>
+      <hr />
+      <div class="row text-center">
+        <div class="col-lg-6 p-3">
+          {%if history==false%}
+          <h3>Total no of predictions made: 0</h3>
+          {%else%}
+          <h3>Total no of predictions made: {{history|length}}</h3>
+          {%endif%}
+        </div>
+        <div class="col-lg-6 p-3">
+          <a href="/predict" class="btn btn-lg btn-primary"
+            >Make a new prediction</a
+          >
+        </div>
+      </div>
+      <hr />
+      <div class="row px-5">
+        {%if history==false%}
+        <div class="text-center fs-5 p-5">
+          <p>There are no records to display...</p>
+          <p>Want to know the exact resale price of your vehicle?</p>
+          <p>Press the above button to make a prediction !!!</p>
+        </div>
+        {%else%} {%for i in history%}
+        <div class="col-lg-3 p-3">
+          <div class="card text-center">
+            <div class="card-header">
+              <h5>Vehicle Prediction 1</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{i.model}}</p>
+              <p class="card-text">{{i.brand}}</p>
+              <p class="card-text">{{i.vehicle}}</p>
+              <p class="card-text">{{'%0.2f'| format(i.price|float)}}</p>
+            </div>
+          </div>
+        </div>
+        {%endfor%} {%endif%}
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
